@@ -14,13 +14,6 @@ shadowJar {
     mergeServiceFiles()
 }
 
-jar {
-    manifest {
-        attributes 'Main-Class': 'net.geekmc.turingserver.TuringServer',
-                "Multi-Release": true
-    }
-}
-
 group 'net.geekmc'
 version '1.0-SNAPSHOT'
 
@@ -33,35 +26,44 @@ repositories {
 dependencies {
 
     // Minestom
-    implementation('com.github.Minestom:Minestom:7af3e1c2e2dfa95de395e257bbac6fca1e3e835b') {
+    compileOnly('com.github.Minestom:Minestom:7af3e1c2e2dfa95de395e257bbac6fca1e3e835b') {
         exclude group: 'org.tinylog'
     }
 
-    //kotlin
+    // kotlin
     compileOnly "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
+    // kotlin coroutines,which Minestom seems don't contain
+    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
 
     //dependency for groovy
-    implementation 'org.fusesource.jansi:jansi:2.4.0'
+    compileOnly 'org.fusesource.jansi:jansi:2.4.0'
 
     // groovy
-    implementation platform('org.apache.groovy:groovy-all:4.0.1')
+    compileOnly platform('org.apache.groovy:groovy-all:4.0.1')
 
     // lombok
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
-    implementation 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
-    testImplementation 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
 
     // logging
-    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
-    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
+    compileOnly 'org.apache.logging.log4j:log4j-core:2.17.1'
+    compileOnly 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
 
     // snake-yaml
-    implementation 'org.yaml:snakeyaml:1.30'
+    compileOnly 'org.yaml:snakeyaml:1.30'
 
     // KStom
     // https://github.com/Project-Cepi/KStom
-    implementation 'com.github.Project-Cepi:KStom:67be3adc9dc8612972080e5b2cabdc04c560f202'
+    compileOnly 'com.github.Project-Cepi:KStom:67be3adc9dc8612972080e5b2cabdc04c560f202'
+
+    //Turing
+    compileOnly 'net.geekmc.turing:Turing:1.0'
+    // source dependency
+    // 本项目build.gradle & 本项目settings.gralde & 依赖项目build.gradle 的 group 必须相同
+    // artifact名也必须相同 取决于依赖项的setting.gradle
+    // version 为git一个commit的tag
 
 }
 
