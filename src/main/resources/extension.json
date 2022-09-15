@@ -1,7 +1,6 @@
 {
-  "entrypoint": "net.geekmc.minotaur.Minotaur",
-  "name": "Minotaur",
+  "entrypoint": "net.geekmc.athena.Athena",
+  "name": "Athena",
   "version": "1.0.0",
-  "dependencies": [
-  ]
+  "dependencies": ["TuringCore"]
 }

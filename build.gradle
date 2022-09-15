@@ -1,9 +1,10 @@
 import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
-    id 'groovy'
     id 'java'
+    id 'groovy'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id "org.jetbrains.kotlin.plugin.serialization" version "1.5.10"
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
@@ -14,26 +15,34 @@ shadowJar {
     mergeServiceFiles()
 }
 
-group 'net.geekmc'
-version '1.0-SNAPSHOT'
+group 'net.geekmc.athena'
+version '1.0.0'
 
 repositories {
     maven { url 'https://repo.spongepowered.org/maven' }
-    maven { url 'https://jitpack.io' }
+    maven {
+        url 'https://www.jitpack.io'
+        //credentials { username authToken }
+    }
     mavenCentral()
 }
 
 dependencies {
 
+    //Turing
+    compileOnly 'net.geekmc.turing:Turing:1.0.0'
+    compileOnly 'net.geekmc.turingcore:TuringCore:1.0.0'
+
     // Minestom
-    compileOnly('com.github.Minestom:Minestom:7af3e1c2e2dfa95de395e257bbac6fca1e3e835b') {
+    compileOnly('com.github.Minestom:Minestom:7af3e1c2e2') {
         exclude group: 'org.tinylog'
     }
 
     // kotlin
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib:1.6.20"
-    // kotlin coroutines,which Minestom seems don't contain
-    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
+    compileOnly 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.0'
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0'
 
     //dependency for groovy
     compileOnly 'org.fusesource.jansi:jansi:2.4.0'
@@ -55,16 +64,7 @@ dependencies {
     compileOnly 'org.yaml:snakeyaml:1.30'
 
     // KStom
-    // https://github.com/Project-Cepi/KStom
-    compileOnly 'com.github.Project-Cepi:KStom:67be3adc9dc8612972080e5b2cabdc04c560f202'
-
-    //Turing
-    compileOnly 'net.geekmc.turing:Turing:1.0'
-    // source dependency
-    // 本项目build.gradle & 本项目settings.gralde & 依赖项目build.gradle 的 group 必须相同
-    // artifact名也必须相同 取决于依赖项的setting.gradle
-    // version 为git一个commit的tag
-
+    compileOnly 'com.github.Project-Cepi:KStom:67be3adc9d'
 }
 
 test {
@@ -77,3 +77,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         jvmTarget = "17"
     }
 }
+
+sourceCompatibility = 17
+targetCompatibility = 17

@@ -1,6 +1,11 @@
-rootProject.name = 'Minotaur'
+rootProject.name = 'Athena'
 sourceControl {
     gitRepository("D:/IDEAProjects/TuringProject/Turing") {
         producesModule("net.geekmc.turing:Turing")
+    }
+}
+sourceControl {
+    gitRepository("D:/IDEAProjects/TuringProject/TuringCore") {
+        producesModule("net.geekmc.turingcore:TuringCore")
     }
 }
