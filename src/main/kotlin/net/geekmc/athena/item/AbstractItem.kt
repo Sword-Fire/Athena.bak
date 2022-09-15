@@ -7,6 +7,9 @@ import net.minestom.server.item.metadata.WrittenBookMeta.WrittenBookGeneration
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
+/**
+ * 抽象的物品类。
+ */
 abstract class AbstractItem(val id: String) {
 
     var cached = false

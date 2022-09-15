@@ -1,6 +1,6 @@
 {
-  "entrypoint": "net.geekmc.athena.Athena",
   "name": "Athena",
+  "entrypoint": "net.geekmc.athena.Athena",
   "version": "1.0.0",
   "dependencies": ["TuringCore"]
 }

@@ -1,2 +1,2 @@
 # Athena
-Athena is a Minestom extensino,which allows to create custom entity,skill and item.
+Athena is a Minestom extension,which allows users to create custom items,entities and skills.
